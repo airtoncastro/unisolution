@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">Deposito: {{operacao === "new"? "*Novo*":deposito}}</span>
+</mat-toolbar>
+<form [formGroup]="tanqueForm" style="width:100%">
+    <mat-form-field class="m-2 w-100" color="accent" *ngIf="operacao === 'new'">
+        <input matInput formControlName="deposito" placeholder="deposito" name="deposito" required>
+    </mat-form-field>
+    <mat-form-field class="m-2 w-100" color="accent">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="tipoProduto" placeholder="Categoria" name="categoriaId">
+            <mat-option *ngFor="let item of tiposProduto" [value]="item.id">{{item.descricao}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="addNew()" matTooltip="Cadastrar novo Tipo Produto">
+        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+    <mat-form-field class="m-2 w-100" color="accent">
+        <input matInput type="number" formControlName="capacidade" placeholder="Capacidade" name="capacidade" required>
+    </mat-form-field>
+</form>
+<div class="w-100">
+    <button [disabled]="!tanqueForm.valid" (click)="salvar()" mat-raised-button color="primary"
+        type="submit">Salvar</button>
+    <button class="ml-1" mat-raised-button [mat-dialog-close]="1" tabindex="-1">Cancelar</button>
+</div>

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space"> Cadastro de Tipo Produto</span>
+</mat-toolbar>
+<mat-card>
+  <table mat-table [dataSource]="dataSource" style="width: 100%;">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <ng-container matColumnDef="id">
+      <th class="px-1 text-nowrap" mat-header-cell *matHeaderCellDef>Id</th>
+      <td class="px-1 text-nowrap" mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="descricao">
+      <th class="px-2 text-nowrap" mat-header-cell *matHeaderCellDef> Descricao </th>
+      <td class="px-2 text-nowrap" mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th class="px-3 text-nowrap" mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </th>
+      <td class="px-3 text-nowrap" mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="edit(element)">
+          <i class="material-icons">edit</i>
+        </button>
+        <button color="warn" mat-icon-button (click)="delete(element.id)">
+          <mat-icon class="">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+</mat-card>

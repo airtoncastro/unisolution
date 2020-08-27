@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Tipo Produto: {{operacao === "new"? "*Novo*":id}}</span>
+</mat-toolbar>
+<form [formGroup]="tipoProdutoForm" style="width:100%">
+  <mat-form-field class="m-2 w-100" color="accent">
+    <input matInput formControlName="descricao" placeholder="descricao" name="descricao" required>
+  </mat-form-field>
+</form>
+<div class="w-100">
+  <button [disabled]="!tipoProdutoForm.valid" (click)="salvar()" mat-raised-button color="primary"
+    type="submit">Salvar</button>
+  <button class="ml-1" mat-raised-button [mat-dialog-close]="1" tabindex="-1">Cancelar</button>
+</div>
